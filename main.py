@@ -11,6 +11,21 @@ pygame.display.set_caption("Bacod Adit") # Judul gamenya
 ###############################################################################################################################################################################################################################################################################################
 # ^^^ dia namanya shafa ^^^ #
 
+#FUNGSI OBJEKTIF
+def objFunction(state, own):
+    n = state.x
+    mySum = 0
+    enemySum = 0
+    for i in range(n):
+        for j in range(n):
+            if state.isi[i][j].owner != 2:
+                if state.isi[i][j].owner == own:
+                    mySum = mySum + i + j
+                else:
+                    enemySum = enemySum + (n-i-1) + (n-j-1)
+
+    return mySum - enemySum
+
 def redrawGameWindow():
     #buat ngedraw game window
     if start:
@@ -120,8 +135,8 @@ while run:
                                 if (firstPiece.owner == board.turn and countLoop > 0 and board.isi[i][j].status == 0): #jika turnnya turn dia, countLoopnya masih ada dan yang diklik kosong
                                     a = int((i + lastX)/2) #bidak musuh
                                     b = int((j + lastY)/2)
-                                    if not (firstPiece.camp == 0 and board.isi[i][j].camp == firstPiece.owner+1): #Ini biar dia gabisa keluar dari camp musuh kalo udah nyampe
-                                        if (cekTetangga(a,b,lastX,lastY) and cekTetangga(i,j,a,b) and (((board.isi[a][b].status == 1) or (board.isi[a][b].status == 3)) and ((board.isi[lastX][lastY].status == 4) or (board.isi[lastX][lastY].status == 2)))):
+                                    if not ((firstPiece.owner == 1 and firstPiece.camp == 1 and board.isi[i][j].camp != 1) or (firstPiece.owner == 0 and firstPiece.camp == 2 and board.isi[i][j].camp != 2)): #Ini biar dia gabisa keluar dari camp musuh kalo udah nyampe
+                                        if (cekTetangga(a,b,lastX,lastY) and (((board.isi[a][b].status == 1) or (board.isi[a][b].status == 3)) and ((board.isi[lastX][lastY].status == 4) or (board.isi[lastX][lastY].status == 2)))):
                                             #intinya dia pengen loncat
                                             sedangLoncat = True
                                             board.isi[i][j].setStatus(board.isi[i][j].status+((firstPiece.owner+1)*2))

@@ -1,10 +1,11 @@
 import random
+from papan import cellboard, papan, startstate
 
 # arr = [1,4,2,4,1,41,151,0,14]
 #
 # print(random.choice(arr))
 
-
+#TREE
 class Tree:
     def __init__(self, data):
         self.data = data
@@ -20,6 +21,7 @@ class Tree:
     def getRandomSuccessor(self):
         return random.choice(self.children)
 
+#HILL CLIMBING
 def hillClimbing(root):
     current = root
     while True:
@@ -28,6 +30,7 @@ def hillClimbing(root):
             return current.data
         current = neighbor
 
+#DUMMY ROOT
 def makeInitialBoard(n):
     matriks = [[0 for j in range(n)] for i in range(n)]
     for i in range(n):
@@ -37,30 +40,7 @@ def makeInitialBoard(n):
 
     return matriks
 
-# def sumScore(state):
-#     n = state.x
-#
-#     sum= 0
-#     for i in range(n):
-#         for j in range(n):
-#             if state.isi[i][j].status == 1:
-#
-#
-#
-#
-#
-#
-#
-#     return sum
 
-
-
-
-def makeTree():
-    init = makeInitialBoard(8)
-
-
-a = makeInitialBoard(8)
-print(a)
-print(len(a))
-print(sumScore(a))
+# board = papan(8,8)
+#
+# print(sumScore(board, 0))
