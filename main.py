@@ -56,8 +56,6 @@ class papan(object):
         #self.turnChanged = 0
 
         # buat ngeload isinya
-        i = 0
-        j = 0
         for i in range(self.x):
             for j in range(self.y):
                 self.isi[i].append(cellboard(i,j)) #append ke self.isi
@@ -148,6 +146,16 @@ class startstate(object):
         #win.blit(self.col1but, (680, 500))      
         #win.blit(self.col2but, (475, 500))
 
+    def size(self):
+        if (self.row == 4):
+            return 8
+        elif (self.row == 2):
+            return 10
+        elif (self.row == 3):
+            return 16
+        else:
+            return 0
+
 ###############################################################################################################################################################################################################################################################################################
 # ^^^ dia namanya shafa ^^^ #
 
@@ -162,6 +170,17 @@ def redrawGameWindow():
 def cekTetangga(x,y,a,b):
     # buat cek tetangga?
     return (x-a == 1 and y-b == 1) or (a-x == 1 and y-b == 1) or (x-a == 1 and b-y == 1) or (a-x == 1 and b-y == 1) or (x-a == 0 and y-b == 1) or (x-a == 1 and y-b == 0) or (x-a == 0 and b-y == 1) or (a-x == 1 and y-b == 0)
+
+def fungsiObjektif(x,y,size, player){
+     
+}
+
+def minimax(startstate){
+    bestScore = -999
+    for i in range startstate/
+}
+
+def mini(papan)
 
 # MAIN
 
@@ -261,7 +280,7 @@ while run:
                                     a = int((i + lastX)/2) #bidak musuh
                                     b = int((j + lastY)/2)
                                     if not ((firstPiece.owner == 1 and firstPiece.camp == 1 and board.isi[i][j].camp != 1) or (firstPiece.owner == 0 and firstPiece.camp == 2 and board.isi[i][j].camp != 2)): #Ini biar dia gabisa keluar dari camp musuh kalo udah nyampe
-                                        if (cekTetangga(a,b,lastX,lastY) and (((board.isi[a][b].status == 1) and (board.isi[lastX][lastY].status == 4)) or ((board.isi[a][b].status == 3) and (board.isi[lastX][lastY].status == 2)))):
+                                        if (cekTetangga(a,b,lastX,lastY) and (((board.isi[a][b].status == 1) or (board.isi[a][b].status == 3)) and ((board.isi[lastX][lastY].status == 4) or (board.isi[lastX][lastY].status == 2)))):
                                             #intinya dia pengen loncat
                                             sedangLoncat = True
                                             board.isi[i][j].setStatus(board.isi[i][j].status+((firstPiece.owner+1)*2))
