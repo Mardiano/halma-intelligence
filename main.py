@@ -180,7 +180,14 @@ def minimax(startstate){
     for i in range startstate/
 }
 
-def mini(papan)
+def min(papan, depth){
+
+
+}
+
+def max(papan, depth){
+    
+}
 
 # MAIN
 
