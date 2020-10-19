@@ -13,7 +13,7 @@ class bidak(object):
         self.x = x
         self.y = y
         self.owner = owner
-    
+
     #def draw(self, win):
 
 # MODEL
@@ -36,8 +36,8 @@ class gamestate(object):
         self.win = win
 """
 
-                                        
-                """                   
+
+                """
                 if curPiece:
                     for kotak in curPiece:
                         kotak.clicked = 0
@@ -49,10 +49,10 @@ class gamestate(object):
                     lastX, lastY = -1, -1
             """
 
-class bisaLoncat: 
-    def __init__(self): 
+class bisaLoncat:
+    def __init__(self):
         self.bisa = False
-        self.kemana = cellboard(8,8)  
+        self.kemana = cellboard(8,8)
 
 
 
