@@ -112,15 +112,17 @@ class papan(object):
             self.turn = 2
         else:
             self.turn = 1
-        settime(100)
+        board.settime(100)
 
     def settime(self,time):
         self.time = time
-        font = pygame.font.SysFont('Consolas', 20)
+
+    def drawtime(self,win):
+        font = pygame.font.SysFont('Consolas', 30)
         mins, secs = divmod(self.time, 60) 
         timer = '{:02d}:{:02d}'.format(mins, secs) 
-        text = font.render('Time: ' + str(timer), 1, (0,0,0))
-        win.blit(text, (1050, 50))
+        text = font.render('Time: ' + str(timer), 1, (250, 183, 50))
+        win.blit(text, (1050, 65))
         pygame.display.update()
 
     def draw(self, win): # ngedraw papan (okay button, player turn, quit button sama cellboard)
@@ -213,11 +215,12 @@ class startstate(object):
 
 def redrawGameWindow():
     #buat ngedraw game window
-    pygame.display.flip()
+    win.blit(bg, (0,0))
     if start:
         halma.draw(win)
     if not start:
         board.draw(win)
+        board.drawtime(win)
     pygame.display.update()
 
 def cekTetangga(x,y,a,b):
