@@ -47,6 +47,7 @@ pygame.time.set_timer(pygame.USEREVENT, 1000)
 
 ##### ALGORITMA UTAMA ######
 while run:
+
     if start: #kalau dia lagi di page 1
         for event in pygame.event.get(): # menangkap apa saja yang terjadi dipagenya
             if event.type == pygame.MOUSEBUTTONDOWN: # jika sedang menklik
@@ -65,10 +66,10 @@ while run:
                     ukuranPapan = 16
                     hasSetRow = True
                 if pygame.Rect(halma.col1hitbox).collidepoint(event.pos): #kalo misal rad1hitbox lagi diklik
-                    halma.setcolor(1)  #set rownya = 1 -> ukuran papan 8x8
+                    halma.setcolor(1)
                     hasSetColor = True
                 if pygame.Rect(halma.col2hitbox).collidepoint(event.pos):
-                    halma.setcolor(2) #set rownya = 2 -> ukuran papan 10x10
+                    halma.setcolor(2)
                     hasSetColor = True
             if hasSetColor and hasSetRow: #kalo udah ngesetting
                 if event.type == pygame.KEYDOWN: #kalau dia mencet sesuatu
@@ -94,6 +95,7 @@ while run:
             countLoop = 1
             sedangLoncat = False
             board.changeturn()
+
         for event in pygame.event.get():
             if event.type == pygame.USEREVENT:
                 board.settime(board.time-1)
@@ -110,6 +112,7 @@ while run:
                     lastX, lastY = -1, -1
                     countLoop = 1
                     sedangLoncat = False
+
                 if pygame.Rect(board.okayhitbox).collidepoint(event.pos):
                     if (len(curPiece) > 1): #intinya minimal ada 2 cellboard yang lagi diklik
                         #dia ngubah turn dia mengubah lastclicked jadi bidak yang ada isinya, sisanya jadi bidak kosong, terus ngereset curPiece, lastX,lastY, dan sedang loncat
@@ -124,6 +127,7 @@ while run:
                         lastX, lastY = -1, -1
                         countLoop = 1
                         sedangLoncat = False
+                        print(board.objective(halma))
                     """
                     else:
                         board.changeturn()
@@ -152,6 +156,7 @@ while run:
                                     c = (i + lastX)/2
                                     d = (j + lastY)/2
                                     #print(lastX,lastY,a,b,c,d)
+
                                     if not ((firstPiece.camp == 0 and board.isi[i][j].camp == firstPiece.owner+1) or (firstPiece.camp != 0 and board.isi[i][j].camp == 0 and firstPiece.owner+1 != firstPiece.camp)): #Ini biar dia gabisa keluar dari camp musuh kalo udah nyampe
                                         if (cekTetangga(a,b,lastX,lastY) and cekTetangga(i,j,a,b) and (c.is_integer() and d.is_integer() > 0) and (((board.isi[a][b].status == 1) or (board.isi[a][b].status == 3)) and ((board.isi[lastX][lastY].status == 4) or (board.isi[lastX][lastY].status == 2)))):
                                             #intinya dia pengen loncat

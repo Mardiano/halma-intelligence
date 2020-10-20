@@ -9,7 +9,6 @@ win = pygame.display.set_mode((1280,720)) # window dari pygamenya, ukurannya 128
 
 pygame.display.set_caption("Let's Play Halma!") # Judul gamenya
 
-
 class cellboard(object):
     # Kelas untuk si petak+bidaknya
     bidak1 = [pygame.image.load('cellboard-kosong.png').convert(), pygame.image.load('cellboard-bidak1.png'), pygame.image.load('cellboard-bidak1-move.png'), pygame.image.load('cellboard-bidak2.png'), pygame.image.load('cellboard-bidak2-move.png')]
@@ -152,7 +151,29 @@ class papan(object):
         win.blit(self.quitbut, (1020, 380))
         #pygame.draw.rect(win, (255,0,0), self.quithitbox,2)
 
+    #Objective Function
+    def objective(self, state):
+        n = self.x
 
+        mySum = 0
+        enemySum = 0
+        for i in range(n):
+            for j in range(n):
+
+                #cek pake status dari si cellboard (apakah dia ada bidak atau ga)
+                if self.isi[i][j].status == 1  or self.isi[i][j].status == 3:
+
+                    #ini rumusnya gara-gara ayyub ga konsisten hehe
+                    if 2*self.isi[i][j].status - 1 == state.color:
+
+                        #Jumlahin score player 1
+                        mySum = mySum + i + j
+                    else:
+
+                        #Jumlahin score player 2
+                        enemySum = enemySum + (n-i-1) + (n-j-1)
+
+        return mySum - enemySum
 
 class startstate(object):
     #setting permainan
