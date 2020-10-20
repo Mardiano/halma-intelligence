@@ -9,6 +9,7 @@ win = pygame.display.set_mode((1280,720)) # window dari pygamenya, ukurannya 128
 
 pygame.display.set_caption("Let's Play Halma!") # Judul gamenya
 
+
 class cellboard(object):
     # Kelas untuk si petak+bidaknya
     bidak1 = [pygame.image.load('cellboard-kosong.png').convert(), pygame.image.load('cellboard-bidak1.png'), pygame.image.load('cellboard-bidak1-move.png'), pygame.image.load('cellboard-bidak2.png'), pygame.image.load('cellboard-bidak2-move.png')]
@@ -150,6 +151,8 @@ class papan(object):
         #ngeprint quit button
         win.blit(self.quitbut, (1020, 380))
         #pygame.draw.rect(win, (255,0,0), self.quithitbox,2)
+
+
 
 class startstate(object):
     #setting permainan
