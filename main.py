@@ -286,6 +286,17 @@ while run:
                 run = False
     else:
         if board.time == 0:
+            #ngeback semua yang udah terjadi
+            for kotak in curPiece:
+                kotak.clicked = 0
+                if kotak == firstPiece:
+                    kotak.setStatus(kotak.status-1)
+                else:
+                    kotak.setStatus(kotak.status-((firstPiece.owner+1)*2))
+            curPiece.clear()
+            lastX, lastY = -1, -1
+            countLoop = 1
+            sedangLoncat = False
             board.changeturn()
         for event in pygame.event.get():
             if event.type == pygame.USEREVENT: 
@@ -342,9 +353,11 @@ while run:
                                 if (firstPiece.owner == board.turn-1 and countLoop > 0 and board.isi[i][j].status == 0): #jika turnnya turn dia, countLoopnya masih ada dan yang diklik kosong
                                     a = math.floor((i + lastX)/2) #bidak musuh
                                     b = math.floor((j + lastY)/2)
-                                    # print(a,b,(i + lastX)/2,(j + lastY)/2)
+                                    c =  math.floor((lastX - i)/2) if (lastX > i) else math.floor((i - lastX)/2)
+                                    d =  math.floor((lastY - i)/2) if (lastY > i) else math.floor((i - lastY)/2)
+                                    print(a,b,c,d)
                                     if not ((firstPiece.camp == 0 and board.isi[i][j].camp == firstPiece.owner+1) or (firstPiece.camp != 0 and board.isi[i][j].camp == 0 and firstPiece.owner+1 != firstPiece.camp)): #Ini biar dia gabisa keluar dari camp musuh kalo udah nyampe
-                                        if (cekTetangga(a,b,lastX,lastY) and cekTetangga(i,j,a,b) and (a > 0 and b > 0) and (((board.isi[a][b].status == 1) or (board.isi[a][b].status == 3)) and ((board.isi[lastX][lastY].status == 4) or (board.isi[lastX][lastY].status == 2)))):
+                                        if (cekTetangga(a,b,lastX,lastY) and cekTetangga(i,j,a,b) and (c > 0 and d > 0) and (((board.isi[a][b].status == 1) or (board.isi[a][b].status == 3)) and ((board.isi[lastX][lastY].status == 4) or (board.isi[lastX][lastY].status == 2)))):
                                             #intinya dia pengen loncat
                                             sedangLoncat = True
                                             board.isi[i][j].setStatus(board.isi[i][j].status+((firstPiece.owner+1)*2))
