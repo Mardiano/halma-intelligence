@@ -171,23 +171,42 @@ def cekTetangga(x,y,a,b):
     # buat cek tetangga?
     return (x-a == 1 and y-b == 1) or (a-x == 1 and y-b == 1) or (x-a == 1 and b-y == 1) or (a-x == 1 and b-y == 1) or (x-a == 0 and y-b == 1) or (x-a == 1 and y-b == 0) or (x-a == 0 and b-y == 1) or (a-x == 1 and y-b == 0)
 
-def fungsiObjektif(x,y,size, player){
-     
-}
+objectiveValue8 = [[0,15,30,30,35,35,35,35], [15, 35, 40, 45, 45, 45, 45, 45], [30, 40, 55, 55, 55, 55, 55, 55], [30, 45, 55, 65, 65, 65, 65, 65], [35, 45, 55, 65, 75, 75, 75, 85], [35, 45, 55, 65, 75, 75, 75, 85], [35, 45, 55, 65, 75, 90, 95, 95], [35, 45, 55, 65, 85, 90, 95, 100]]
+objectiveValue10 = [[0,15,20,25,30,35,35,35,35,35], [15,25,30,35,40,40,40,40,40,40], [20,30,35,45,45,45,45,45,45,45], [25,35,45,55,55,55,55,55,55,55], [30,40,45,55,65,65,65,65,65,65], [35,40,45,55,65,70,70,70,70,80], [35,40,45,55,65,70,80,80,85,85], [35,40,45,55,65,70,80,85,90,90], [35,40,45,55,65,70,85,90,95,95], [35,40,45,55,65,80,85,90,95,100]]
+objectiveValue16 = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
 
-def minimax(startstate){
+def fungsiObjektif(x,y,size):
+    if (size == 8):
+        global objectiveValue8
+        return objectiveValue8[x][y]
+    elif (size == 10):
+        global objectiveValue10
+        return objectiveValue10[x][y]
+    else:
+        global objectiveValue16
+        return objectiveValue16[x][y]
+        
+
+
+def minimax(startstate):
     bestScore = -999
     for i in range startstate/
-}
-
-def min(papan, depth){
 
 
-}
+def min(papan, depth):
 
-def max(papan, depth){
-    
-}
+
+def max(papan, depth):
+
+
+def bestMove(papan):
+    bestScore = -9999
+    move
+    for i in (self.isi):
+        
+
+
+
 
 # MAIN
 
