@@ -212,6 +212,7 @@ def possibleMove(papan, pioneer):
                     papanTemp.isi[pioneer.x][pioneer.y].status = 0
                     lastPiece = board.isi[i][j]
 
+<<<<<<< Updated upstream
     sedangLoncat = False #buat tau dia loncat atau ngga
     pioneer
 
@@ -222,12 +223,88 @@ def minimax(papan, player, depth, size, score):
     if (result != null):
         score = scores[result]
         return score
+=======
+def maxValue(board, player, depth, alpha, beta):
+    if (depth == 0):
+        return fungsiObjektif(board)
+
+    pion = []
+    for i in range (len(board.isi)):
+        for j in range (len(board.isi[i])):
+            #Pion bot
+            if (board.isi[i][j].owner == player):
+                pion.append(board.isi[i][j])
+
+    allMove = []
+    allPapan = []
+    for bidak in pion:
+        for move in (possibleMove(papan, bidak)):
+            papanTemp = copy.deepcopy(board)
+            papanTemp.isi[bidak.x][bidak.y].status = 0
+            papanTemp.isi[bidak.x][bidak.y].owner = 2
+            papanTemp.isi[move.x][move.y] = copy.deepcopy(move)
+            allPapan.append(papanTemp)
+    
+    bestValue = -(math.inf)
+    # bestPapan = papan()
+    for boards in allPapan:
+        val = minValue(boards, abs(player-1), depth-1, alpha, beta)
+        if (val > bestValue):
+            bestValue = val
+            beta = min(beta, val)
+        if (bestValue <= alpha):
+            return bestValue
+        alpha = max(alpha, val)
+        # bestPapan = boards
+    return bestValue
+
+def minValue(board, player, depth, alpha, beta):
+    if (depth == 0):
+        return fungsiObjektif(board) 
+        
+    pion = []
+    for i in range (len(board.isi)):
+        for j in range (len(board.isi[i])):
+            #Pion bot
+            if (papan.isi[i][j].owner == player):
+                pion.append(board.isi[i][j])
+
+    allMove = []
+    allPapan = []
+    for bidak in pion:
+        for move in (possibleMove(papan, bidak)):
+            papanTemp = copy.deepcopy(board)
+            papanTemp.isi[bidak.x][bidak.y].status = 0
+            papanTemp.isi[bidak.x][bidak.y].owner = 2
+            papanTemp.isi[move.x][move.y] = copy.deepcopy(move)
+            allPapan.append(papanTemp)
+
+    worstValue = math.inf
+    # bestPapan = papan()
+    for boards in allPapan:
+        val = maxValue(boards, abs(player-1), depth-1,alpha, beta)
+        if (val < worstValue):
+            worstValue = val
+        if (worstValue >= beta):
+            return worstValue
+        alpha = max(alpha, val)
+        # bestPapan = boards
+
+    return worstValue    
+    
+
+def minimax(board, player, depth):
+    # result = checkWinner()
+    # if (result != null):
+    #     return result
+>>>>>>> Stashed changes
 
     pion = []
     for i in range (len(papan.isi)):
         for j in range (len(papan.isi[i])):
             #Pion bot
             if (papan.isi[i][j].owner == player):
+<<<<<<< Updated upstream
                 pion.append(papan.isi[i][j])
 
     gerakYangMungkin = []
@@ -240,6 +317,30 @@ def minimax(papan, player, depth, size, score):
             
 def min(papan, player, depth, size):
 
+=======
+                pion.append(board.isi[i][j])
+
+    score = -9999
+    allMove = []
+    allPapan = []
+    for bidak in pion:
+        for move in (possibleMove(papan, bidak)):
+            papanTemp = copy.deepcopy(board)
+            papanTemp.isi[bidak.x][bidak.y].status = 0
+            papanTemp.isi[bidak.x][bidak.y].owner = 2
+            papanTemp.isi[move.x][move.y] = copy.deepcopy(move)
+            allPapan.append(papanTemp)
+
+    bestValue = -(math.inf)
+    bestPapan = papan()
+    for boards in allPapan:
+        val = minValue(boards, player, depth-1, -(math.inf), math.inf)
+        if (val > bestValue):
+            bestValue = val
+            bestPapan = boards
+
+    return bestPapan
+>>>>>>> Stashed changes
 
 def max(papan, player, depth, size):
     if (depth == 3):
